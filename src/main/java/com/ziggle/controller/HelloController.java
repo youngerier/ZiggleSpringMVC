@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value = "/hello/*")
 public class HelloController {
 
+
+
     @RequestMapping("success")
     public String returnSuccess() {
         return "views/success";
