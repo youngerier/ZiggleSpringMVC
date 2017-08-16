@@ -12,7 +12,11 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
     <!-- 启动注解驱动的Spring MVC功能，注册请求url和注解POJO类方法的映射-->
     <mvc:annotation-driven>
-
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8"/>
+            </bean>
+        </mvc:message-converters>
     </mvc:annotation-driven>
 
     <!-- 启动包扫描功能，以便注册带有@Controller、@service、@repository、@Component等注解的类成为spring的bean -->
