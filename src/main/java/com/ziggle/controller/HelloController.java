@@ -1,5 +1,6 @@
 package com.ziggle.controller;
 
+import com.ziggle.services.MongoDBJDBC;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,5 +20,11 @@ public class HelloController {
     @RequestMapping(value = "string", produces = "text/plain;charset=utf-8")
     public String returnString() {
         return "hello return string";
+    }
+
+
+    public void TestServices(){
+        MongoDBJDBC  d = new MongoDBJDBC();
+        d.GetClient();
     }
 }
