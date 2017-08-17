@@ -1,6 +1,7 @@
 package com.ziggle.controller;
 
 import com.ziggle.dao.IUserJpaRepository;
+import com.ziggle.dao.IUserRepo;
 import com.ziggle.modules.User;
 import com.ziggle.services.MongoDBJDBC;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 
 @Controller
@@ -18,6 +21,8 @@ public class HelloController {
     @Autowired
     private IUserJpaRepository userJpaRepository;
 
+    @Autowired
+    private IUserRepo userRepo;
 
     @RequestMapping("success")
     public String returnSuccess() {
@@ -42,4 +47,13 @@ public class HelloController {
         User users = userJpaRepository.findOne(id);
         return users;
     }
+
+    @ResponseBody
+    @RequestMapping(value = "findMyUser/{name}")
+    public List<User> GetMyUser(@PathVariable("name") String name) {
+        List<User> users = userRepo.findByName(name);
+        return users;
+    }
+
+
 }
