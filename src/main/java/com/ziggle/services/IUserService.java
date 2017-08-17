@@ -10,6 +10,4 @@ public interface IUserService {
     public void saveUser(User u);
 
     public void delete(long id);
-
-    public List<User> findByName(String name);
 }

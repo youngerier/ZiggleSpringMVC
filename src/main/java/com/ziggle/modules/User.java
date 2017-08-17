@@ -8,17 +8,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "user")
 public class User {
-    private Integer id;
+    private long id;
     private String name;
-    private Integer age;
+    private long age;
 
     @Id
     @GeneratedValue
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -30,11 +30,11 @@ public class User {
         this.name = name;
     }
 
-    public Integer getAge() {
+    public long getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(long age) {
         this.age = age;
     }
 
