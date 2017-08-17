@@ -2,6 +2,7 @@ package com.ziggle.controller;
 
 import com.ziggle.services.MongoDBJDBC;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
 
 import static org.junit.Assert.*;
 
