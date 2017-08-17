@@ -1,16 +1,24 @@
 package com.ziggle.modules;
 
-@Entity
-public class User {
-    private int id;
-    private String name;
-    private int age;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-    public int getId() {
+@Entity
+@Table(name = "user")
+public class User {
+    private Integer id;
+    private String name;
+    private Integer age;
+
+    @Id
+    @GeneratedValue
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -22,11 +30,11 @@ public class User {
         this.name = name;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
