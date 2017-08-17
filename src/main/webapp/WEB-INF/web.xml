@@ -28,5 +28,8 @@
         <param-value>classpath:applicationContext.xml</param-value>
     </context-param>
 
-
+    <context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>/conf/log4j.xml</param-value>
+    </context-param>
 </web-app>
