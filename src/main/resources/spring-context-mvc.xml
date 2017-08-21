@@ -104,5 +104,5 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd http://www.springfr
     <mvc:resources location="WEB-INF/views/" mapping="/views/**"/>
 
     <!--enable @AspectJ-->
-    <aop:aspectj-autoproxy/>
+    <!--<aop:aspectj-autoproxy/>-->
 </beans>
