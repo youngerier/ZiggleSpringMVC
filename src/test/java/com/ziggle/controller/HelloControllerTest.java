@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(locations = {"classpath:spring-context-mvc.xml", "classpath:spring-context.xml"})
+@ContextConfiguration(locations = {"classpath:spring-context-mvc.xml", "classpath:spring-context.xml",""})
 public class HelloControllerTest {
 
     @Autowired
@@ -38,6 +38,8 @@ public class HelloControllerTest {
         MockHttpServletRequestBuilder mockHttpServletRequestBuilder = MockMvcRequestBuilders.request(HttpMethod.GET, "/hello/success");
         mockMvc.perform(mockHttpServletRequestBuilder).andExpect(status().isOk())
                 .andDo(print());
+
+
 
     }
 

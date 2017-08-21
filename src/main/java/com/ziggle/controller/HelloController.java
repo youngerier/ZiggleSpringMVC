@@ -4,6 +4,7 @@ import com.ziggle.dao.IUserJpaRepository;
 import com.ziggle.dao.IUserRepo;
 import com.ziggle.modules.User;
 import com.ziggle.services.MongoDBJDBC;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +17,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/hello/*")
 public class HelloController {
-
+    private static final Logger logger = Logger.getLogger(HelloController.class);
 
     @Autowired
     private IUserJpaRepository userJpaRepository;
@@ -26,6 +27,7 @@ public class HelloController {
 
     @RequestMapping("success")
     public String returnSuccess() {
+        logger.error("hail hydra");
         return "views/success";
     }
 
