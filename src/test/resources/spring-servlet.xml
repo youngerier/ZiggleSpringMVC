@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.1.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+    <!-- 启动注解驱动的Spring MVC功能 encode-->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8"/>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!-- 启动包扫描功能，以便注册带有@Controller、@service、@repository、@Component等注解的类成为spring的bean -->
+    <context:component-scan base-package="com.ziggle"/>
+
+    <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
+
+    <!-- 对模型视图名称的解析，在请求时模型视图名称添加前后缀 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/"/>    <!-- 前缀 -->
+        <property name="suffix" value=".jsp"/>    <!-- 后缀 -->
+    </bean>
+
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:*.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--scan package -->
+    <!--扫描包，排除springMVC扫描的包，重复扫描会有问题-->
+    <context:component-scan base-package="com">
+        <context:exclude-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller"></context:exclude-filter>
+        <context:exclude-filter type="annotation"
+                                expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>
+
+    <!--jdbc conf-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driverClass}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="user" value="${jdbc.username}"/>
+
+    </bean>
+
+    <bean id="entityManageFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+
+        <property name="packagesToScan" value="com.ziggle"/>
+
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
+
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+
+                <prop key="hibernate.cache.use_query_cache">true</prop>
+                <prop key="hibernate.cache.use_second_level_cache">true</prop>
+                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+            </props>
+        </property>
+
+        <property name="sharedCacheMode" value="ENABLE_SELECTIVE"/>
+    </bean>
+
+
+    <!--transaction-->
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManageFactory"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <jpa:repositories base-package="com"
+                      entity-manager-factory-ref="entityManageFactory"></jpa:repositories>
+
+    <!-- 访问静态文件（jpg,js,css）的方法 -->
+    <!--<mvc:resources location="WEB-INF/files/" mapping="/files/**"/>-->
+    <mvc:resources location="WEB-INF/scripts/" mapping="/scripts/**"/>
+    <mvc:resources location="WEB-INF/styles/" mapping="/styles/**"/>
+    <mvc:resources location="WEB-INF/views/" mapping="/views/**"/>
+</beans>
