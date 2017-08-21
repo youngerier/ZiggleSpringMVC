@@ -12,6 +12,4 @@ public interface IUserRepo extends Repository<User, Long> {
 
     @Query(value = "select * from user u where u.name=?1", nativeQuery = true)
     List<User> findByName(String name);
-
-
 }
