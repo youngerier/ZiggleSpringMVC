@@ -1,7 +1,8 @@
-package com.ziggle.services;
+package com.ziggle.services.impl;
 
 import com.ziggle.dao.IUserJpaRepository;
-import com.ziggle.modules.User;
+import com.ziggle.entity.User;
+import com.ziggle.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

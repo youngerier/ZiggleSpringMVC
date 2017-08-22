@@ -2,7 +2,7 @@ package com.ziggle.controller;
 
 import com.ziggle.dao.IUserJpaRepository;
 import com.ziggle.dao.IUserRepo;
-import com.ziggle.modules.User;
+import com.ziggle.entity.User;
 import com.ziggle.services.MongoDBJDBC;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class HelloController {
     private IUserJpaRepository userJpaRepository;
 
     @Autowired
-    private IUserRepo userRepo;
+    IUserRepo userRepo;
 
     @RequestMapping("success")
     public String returnSuccess() {

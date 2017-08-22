@@ -1,4 +1,4 @@
-package com.ziggle.modules;
+package com.ziggle.entity;
 
 
 import javax.persistence.Entity;

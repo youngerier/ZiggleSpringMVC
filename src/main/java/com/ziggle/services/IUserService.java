@@ -1,6 +1,6 @@
 package com.ziggle.services;
 
-import com.ziggle.modules.User;
+import com.ziggle.entity.User;
 
 import java.util.List;
 

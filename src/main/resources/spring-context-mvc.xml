@@ -50,6 +50,8 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd http://www.springfr
 
     </bean>
 
+
+
     <bean id="entityManageFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="jpaVendorAdapter">
