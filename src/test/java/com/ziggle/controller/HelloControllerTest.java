@@ -49,4 +49,20 @@ public class HelloControllerTest {
         d.GetClient();
     }
 
+
+    @Test
+    public void getHeaderTest() throws Exception {
+        MockHttpServletRequestBuilder mockHttpServletRequestBuilder = MockMvcRequestBuilders.request(HttpMethod.GET, "/hello/findUser/1");
+        mockMvc.perform(mockHttpServletRequestBuilder).andExpect(status().isOk())
+                .andDo(print());
+    }
+
+    @Test
+    public void getHeaderCookieTest() throws Exception {
+        MockHttpServletRequestBuilder mockHttpServletRequestBuilder = MockMvcRequestBuilders.request(HttpMethod.GET, "/hello/findHeader");
+        mockMvc.perform(mockHttpServletRequestBuilder).andExpect(status().isOk())
+                .andDo(print());
+    }
+
+
 }
