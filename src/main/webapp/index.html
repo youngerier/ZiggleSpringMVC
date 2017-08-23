@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh">
+<head th:replace="_header::head('主页')">
+
+</head>
+<body>
+<nav th:replace="_navbar::navbar"></nav>
+
+<div class="container">
+    <div class="row">
+        <div class="container col-md-4">
+            <h2>基本使用</h2>
+            <h4>字符串字面量</h4>
+            <p th:text="'呵呵'"></p>
+            <h4>数字字面量</h4>
+            <p th:text="2012+5">2000</p>
+            <h4>布尔值字面量</h4>
+            <p th:text="true==true"></p>
+            <h4>空值字面量</h4>
+            <p th:text="null"></p>
+            <h4>算术运算</h4>
+            <p th:text="(17%5)-1"></p>
+            <h4>比较运算</h4>
+            <p th:text="1 gt 2"></p>
+            <h4>逻辑运算</h4>
+            <p th:text="true and false"></p>
+            <h4>条件表达式</h4>
+            <p th:text="true?'真':'假'"></p>
+            <h4>默认值表达式</h4>
+            <p th:text="null?:'我不是空值'"></p>
+            <h4>无操作标记</h4>
+            <p th:text="_">不进行任何操作</p>
+        </div>
+        <div class="container col-md-4">
+            <h2>Thymeleaf表达式</h2>
+            <h4>使用Session属性</h4>
+            <p th:text="${session.user}"></p>
+
+            <h4>使用URL</h4>
+            <p><a th:href="@{/hello(name='易天')}">查询参数问候</a></p>
+            <p><a th:href="@{/hello/{name}(name='易天')}">路径参数问候</a></p>
+        </div>
+        <div class="container col-md-4">
+            <h2>类型转换和格式化</h2>
+            <h4>设置属性</h4>
+            <button th:attr="class='btn btn-primary'">按钮</button>
+            <button th:class="'btn btn-success'">按钮</button>
+        </div>
+    </div>
+</div>
+<div th:replace="_footer::footer"></div>
+</body>
+</html>

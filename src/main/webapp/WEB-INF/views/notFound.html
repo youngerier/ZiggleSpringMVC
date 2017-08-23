@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="_header::header('页面未找到')">
+<body>
+<nav th:replace="_navbar::navbar"></nav>
+<div class="container">
+    <h1>您要找的页面不存在</h1>
+    <img th:src="@{/static/images/404.png}" th:alt-title="404">
+</div>
+
+<div th:replace="_footer::footer"></div>
+
+</body>
+</html>
