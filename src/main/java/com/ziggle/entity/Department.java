@@ -1,6 +1,10 @@
 package com.ziggle.entity;
 
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -8,6 +12,9 @@ import javax.persistence.Table;
 
 @Table(name = "ziggle_department")
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Department {
 
     private Integer id;

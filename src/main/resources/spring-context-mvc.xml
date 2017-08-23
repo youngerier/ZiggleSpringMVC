@@ -19,12 +19,14 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd http://www.springfr
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
-
+    <mvc:resources mapping="/static/**" location="/WEB-INF/static/"/>
+    <mvc:view-controller path="/" view-name="views/index"/>
+    <!--<mvc:view-controller path="/404" view-name="views/notFound"/>-->
 
     <!-- 启动包扫描功能，以便注册带有@Controller、@service、@repository、@Component等注解的类成为spring的bean -->
     <context:component-scan base-package="com.ziggle"/>
 
-    <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
+    <context:property-placeholder location="classpath:jdbc.properties"/>
 
     <!-- view Resolver  -->
     <bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
@@ -33,6 +35,8 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd http://www.springfr
         <property name="templateMode" value="HTML5"/>
         <property name="checkExistence" value="true"/>
         <property name="cacheable" value="false"/>
+        <!--right encoding setting-->
+        <property name="characterEncoding" value="UTF-8"/>
     </bean>
 
     <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
@@ -91,21 +95,15 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd http://www.springfr
     </bean>
 
     <!--transaction-->
-
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManageFactory"/>
     </bean>
 
-    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <tx:annotation-driven/>
 
-    <jpa:repositories base-package="com"
-                      entity-manager-factory-ref="entityManageFactory"></jpa:repositories>
+    <jpa:repositories base-package="com.ziggle" entity-manager-factory-ref="entityManageFactory"/>
 
     <!-- static files jpg,js,css -->
-    <!--&lt;!&ndash;<mvc:resources location="WEB-INF/files/" mapping="/files/**"/>&ndash;&gt;-->
-    <!--<mvc:resources location="WEB-INF/scripts/" mapping="/scripts/**"/>-->
-    <!--<mvc:resources location="WEB-INF/styles/" mapping="/styles/**"/>-->
-    <!--<mvc:resources location="WEB-INF/views/" mapping="/views/**"/>-->
     <mvc:resources mapping="/static/**" location="/WEB-INF/static/"/>
 
     <!--enable @AspectJ-->

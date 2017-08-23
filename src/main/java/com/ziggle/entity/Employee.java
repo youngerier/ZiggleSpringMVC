@@ -1,11 +1,18 @@
 package com.ziggle.entity;
 
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Table(name = "ziggle_empoyee")
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Employee {
     private Integer id;
     private String lastName;
