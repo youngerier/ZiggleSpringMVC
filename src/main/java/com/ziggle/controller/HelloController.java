@@ -62,4 +62,11 @@ public class HelloController {
         System.out.println(cookie);
     }
 
+
+    @ResponseBody
+    @RequestMapping(value = "findAll")
+    public List<User> FindAllUser() {
+        List<User> allUser = userRepo.findAll();
+        return allUser;
+    }
 }

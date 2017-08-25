@@ -64,5 +64,12 @@ public class HelloControllerTest {
                 .andDo(print());
     }
 
+    @Test
+    public void getAllUsersTest() throws Exception {
+        MockHttpServletRequestBuilder mockHttpServletRequestBuilder = MockMvcRequestBuilders.request(HttpMethod.GET, "/hello/findAll");
+        mockMvc.perform(mockHttpServletRequestBuilder).andExpect(status().isOk())
+                .andDo(print());
+    }
+
 
 }
