@@ -1,7 +1,5 @@
 package com.ziggle.controller;
 
-import com.google.gson.Gson;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.ziggle.services.impl.MongoClientServiceImpl;
@@ -31,8 +29,9 @@ public class MongoController {
         List<String> s = new ArrayList<String>();
         try {
             while (cursor.hasNext()) {
+//                Document doc = cursor.next();
                 s.add(cursor.next().toJson());
-                System.out.println(cursor.next().toJson());
+//                System.out.println(cursor.next().toJson());
             }
         } catch (Exception e) {
             e.printStackTrace();
